@@ -11,3 +11,241 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.homepage {
+  background-color: #fcf6bd;
+  color: #444444;
+  height: calc(100vh); /* Subtract height of nav and footer */
+}
+
+.homepage-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.homepage-title {
+  font-size: 6rem;
+  text-align: center;
+}
+
+.flashcard-title {
+  font-size: 4rem;
+  text-align: center;
+}
+.homepage-description {
+  font-size: 2rem;
+  text-align: center;
+  max-width: 800px;
+}
+
+.homepage-button-group {
+  display: flex;
+  justify-content: center;
+}
+
+.homepage-login-button {
+  background-color: #2159f4 !important;
+  color: #ffffff !important;
+  border: none;
+  margin-right: 10px;
+  transition: transform 3s 3s;
+  border: none !important;
+}
+
+.homepage-login-button:hover {
+  background-color: #ffffff !important;
+  color: #866fce !important;
+}
+
+.homepage-signup-button {
+  border: none !important;
+  background-color: #ff5722 !important;
+}
+
+.homepage-signup-button:hover {
+  color: #ff7043 !important;
+  background-color: #ffffff !important;
+}
+
+.homepage-todo-button {
+  background-color: #7db01e !important;
+  border: none !important;
+  margin-right: 10px;
+}
+
+.homepage-todo-button:hover {
+  color: #7db01e !important;
+  background-color: #ffffff !important;
+}
+
+.homepage-flashcard-button {
+  background-color: #000000 !important;
+  border: none !important;
+  margin-right: 10px;
+}
+
+.homepage-flashcard-button:hover {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+
+.custom-cards {
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 6px -1px, rgba(0, 0, 0, 0.14) 0px 2px 4px -1px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  margin: 20px;
+  width: 40%;
+  background-color: white !important;
+}
+
+.custom-cards .card-header {
+  background-color: #e97f34;
+  border-radius: 10px 10px 0 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 15px;
+}
+.custom-cards:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+  background-color: rgb(253, 249, 249) !important;
+
+}
+
+.custom-cards .card-body {
+  padding: 20px;
+}
+
+.custom-cards .card-title {
+  color: #008080;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.custom-cards .card-text {
+  color: #444;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.custom-cards .btn-primary {
+  background-color: #008080;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-cards .btn-primary:hover {
+  background-color: #007373;
+}
+
+
+
+
+/* flash card set cards */
+.cardset-container {
+  display: flex;
+  justify-content: center !important;
+  text-align: center !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-card {
+  background-color: #f8f9fa;
+  border: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  transition: box-shadow 0.3s ease-in-out;
+  width: 30% !important;
+  margin: 20px;
+}
+.custom-card2 {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease-in-out;
+  width: 30% !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.custom-card:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.custom-header {
+  background-color: white !important;
+}
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.card-title {
+  font-size: 36px !important; /* Enlarge title font size */
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center; /* Center title */
+}
+
+.card-text {
+  font-size: 20px; /* Enlarge text font size */
+  margin-bottom: 0;
+  text-align: center; /* Center text */
+}
+
+
+.edit-card {
+  width: fit-content !important;
+}
+
+
+
+#x-button {
+  color: black !important; 
+  font-size: 30px;
+  padding: 10px;
+  font-weight: bolder;
+}
+
+#x-button:hover {
+  color: white !important;
+  background-color:firebrick;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+#edit-button {
+  color: black !important; 
+  font-size: 30px;
+  padding: 10px;
+  font-weight: bolder;
+  margin-top: 10px;
+}
+
+#edit-button:hover {
+  color: white !important;
+  background-color:#007373;
+  cursor: pointer;
+  font-size: 30px;
+}
