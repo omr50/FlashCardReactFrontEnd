@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "./security/AuthContext"
-import { Button, Card } from "react-bootstrap"
+import { Button, Card, Table } from "react-bootstrap"
 import { deleteCardApi, retrieveCardsForSetApi } from "./api/FlashcardApiService"
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
@@ -41,19 +41,42 @@ function Cards() {
             <br></br>
             <h1>{setname}</h1>
             <br></br>
-            <span style={{ 'width':'20px', 'backgroundColor':'purple', 'color':'white', 'padding':'10px', borderRadius:'5px'}} onClick={()=>{navigate(`/card-form/-1/${setname}/${id}`)}}>Add Card</span>
+            <span style={{ 'width':'20px', 'backgroundColor':'orange', 'color':'white', 'padding':'10px', borderRadius:'5px', 'cursor':'pointer', 'margin':'5px', 'fontSize':'20px'}} onClick={()=>{navigate(`/card-form/-1/${setname}/${id}`)}}>Add Card</span>
+            <span style={{ 'width':'20px', 'backgroundColor':'#8ca765', 'color':'white', 'padding':'10px', borderRadius:'5px', 'cursor':'pointer', 'margin':'5px', 'fontSize':'20px'}}>Review Set</span>
+            <br></br>
             <div style={{'display':'flex', 'flex-direction':'row', 'justifyContent':'center'}}>
                 <hr style={{'width':'75%', 'alignContent':'center'}}></hr>
             </div>
+            <div style={{'display':'flex','justifyContent':'center'}}>
+                <Table striped bordered hover style={{"width":'80%', 'justifyContent':'center'}}>
+                    <thead>
+                        <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Word</th>
+                        <th>Definition</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {allCards.map((card)=> (
+                        <tr key={card.id}>
+                            <td>
+                            <Button variant="danger" onClick={(event)=>{deleteCard(card.id); event.stopPropagation();}}>&#10005;</Button>
+                            </td>
+                            <td>
+                            <Button variant="info" style={{'color':'white'}} onClick={()=>{navigate(`/card-form/${card.id}/${setname}/${id}`)}}>&#9998;</Button>
+                            </td>
+                            <td style={{'fontSize':'20px'}}>{card.word}</td>
+                            <td style={{'fontSize':'20px'}}>{card.definition}</td>
+                        </tr>
+                        ))}
+                    </tbody>
+                    </Table>
+                </div>
 
-        {allCards.map((card)=>{
-            
-            return (
-                // card id is here and can be used for crud operations on card.
-            <div key={card.id}>
-                <div style={{'display':'flex', 'flex-direction':'row', 'justifyContent':'center', 'minHeight':'200px'}}>
+            {/* <div style={{'display':'flex', 'flex-direction':'row', 'justifyContent':'center', 'minHeight':'200px'}}>
 
-                    <Card className="custom-card2 edit-card" style={{'width':'fitContent'}}>
+                    <Card className="custom-card3 edit-card" style={{'width':'fitContent', 'height':'200px'}}>
                         <Card.Body style={{"color": "black !important"}}>
                             <div style={{'fontSize':'30px'}} id="x-button" onClick={(event)=>{deleteCard(card.id); event.stopPropagation();}}>&#10005;</div>
                             <hr></hr>
@@ -63,47 +86,23 @@ function Cards() {
 
                     <Card className="custom-card">
                         <Card.Body>
-                            <Card.Title className="card-title" style={{paddingTop:'0px'}}>{card.word}</Card.Title>
-                            {/* <td><Button className="btn-danger" onClick={()=>{deleteflashCardSet(flashCardSet.id)}}>&#x2715;</Button></td> */}
-                            {/* <td><Button className="btn-primary" onClick={()=>{updateflashCardSet(flashCardSet.id)}}><span style={{fontSize:'20px'}}>&#x27F3;</span></Button></td> */}
-                        </Card.Body>
-                    </Card>
-
-                    <Card className="custom-card" key={card.id}>
-                        <Card.Body>
-                            <Card.Title className="card-title" style={{paddingTop:'0px'}}>{card.definition}</Card.Title>
-                            {/* <td><Button className="btn-danger" onClick={()=>{deleteflashCardSet(flashCardSet.id)}}>&#x2715;</Button></td> */}
-                            {/* <td><Button className="btn-primary" onClick={()=>{updateflashCardSet(flashCardSet.id)}}><span style={{fontSize:'20px'}}>&#x27F3;</span></Button></td> */}
-                        </Card.Body>
-                    </Card>
-
-                </div>
-                <div style={{'display':'flex', 'flex-direction':'row', 'justifyContent':'center'}}>
-                    <hr style={{'width':'75%', 'alignContent':'center'}}></hr>
-                </div>
-            </div>
-        // <Card className="custom-card" key={flashCardSet.id} onClick={() => {retrieveAllCards(flashCardSet.id, flashCardSet.setName)}}>
-        // <Card.Header className="custom-header">
-        // <div className="d-flex justify-content-between">
-        //     <Button variant="outline-danger" size="m" onClick={(event)=>{deleteflashCardSet(flashCardSet.id); event.stopPropagation();}}>
-        //     &#10006;
-        //     </Button>
-        //     <Button variant="outline-dark" size="lg" onClick={(event)=>{navigate(`/cardset-form/${flashCardSet.id}`); event.stopPropagation();}}>
-        //     &#9998;
-        //     </Button>
-        // </div>
-        // </Card.Header>
-        // <Card.Body>
-        // <Card.Title>{flashCardSet.setName}</Card.Title>
-        // <Card.Text>{flashCardSet.setDescription}</Card.Text>
-        // </Card.Body>
-        // </Card> 
-            )
-        }
+                            <Card.Title><br></br></Card.Title>
+                            <Card.Text className="card-title" style={{paddingTop:'0px'}}>{card.word}</Card.Text>
+                            </Card.Body>
+                            </Card>
+        
+                            <Card className="custom-card" key={card.id}>
+                                <Card.Body>
+                                    <Card.Title><br></br></Card.Title>
+                                    <Card.Text className="card-title" style={{paddingTop:'0px'}}>{card.definition}</Card.Text>
+                                </Card.Body>
+                            </Card>
+        
+                        </div>
+                        <div style={{'display':'flex', 'flex-direction':'row', 'justifyContent':'center'}}>
+                            <hr style={{'width':'75%', 'alignContent':'center'}}></hr>
+                        </div>  */}
             
-        )
-
-    }
     </div>
     )
 }

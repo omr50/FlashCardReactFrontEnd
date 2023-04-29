@@ -18,5 +18,9 @@ export const deleteCardApi = (username, id) => apiClient.delete(`/users/${userna
 export const retrieveCardByIdApi = (username, id)=> apiClient.get(`users/${username}/cards/${id}`)
 
 export const postCardApi = (username, card) => apiClient.post(`users/${username}/cards`, card)
+
+export const updateCardApi = (username, card, id) => apiClient.put(`users/${username}/cards/${id}`, card)
+
+
 // export const createTodoApi = (username, todo) => apiClient.post(`users/${username}/todos`, todo)
 

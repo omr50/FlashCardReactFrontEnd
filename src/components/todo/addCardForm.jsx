@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Button } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
 import { useAuth } from "./security/AuthContext"
-import { postCardApi, postCardSetApi, retrieveCardByIdApi, retrieveCardSetByIdApi, retrieveCardsForSetApi, updateCardSetApi } from "./api/FlashcardApiService"
+import { postCardApi, postCardSetApi, retrieveCardByIdApi, retrieveCardSetByIdApi, retrieveCardsForSetApi, updateCardApi, updateCardSetApi } from "./api/FlashcardApiService"
 
 export default function AddFlashcard() {
     const {id, setName, setId} = useParams()
@@ -28,6 +28,7 @@ export default function AddFlashcard() {
                 })
                 .catch(error => console.log(error))
             }
+        
     }
 
     function onSubmit(values) {
@@ -39,13 +40,14 @@ export default function AddFlashcard() {
             cardsetId: setId
         }
         if (id != -1){
-        postCardApi(username, id, card)
+            updateCardApi(username, card, id)
                 .then(response => {
                     console.log("Updated a new card")
                     console.log(card)
-                    navigate("/flashcards")
+                    navigate(`/flashcards/${setName}/${setId}`)
+
                 })
-                .catch(error => console.log(error))
+                .catch(error => console.log(card, error))
             }
         else{
             postCardApi(username, card)
