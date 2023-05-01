@@ -11,7 +11,7 @@ function HeaderComponent() {
     return (
         <Navbar bg="light" expand="lg" style={{padding:"10px"}}>
         <Link to="/" className='nav-link'>
-            <Navbar.Brand className='ms-2 fs-1 fw-bold' style={{'color':'#4255ff !important'}}>Study</Navbar.Brand>
+            <Navbar.Brand className='ms-2 fs-1 fw-bold navcolor'>Study</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

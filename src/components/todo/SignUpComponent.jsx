@@ -28,6 +28,7 @@ export default function SignUpComponent() {
         .catch(error =>{
             if (error.response && error.response.status === 409){
                 setUsername('')
+                console.log("SET TRUE")
                 setUserExists(true)
             }
         } )
@@ -50,8 +51,8 @@ export default function SignUpComponent() {
     return (
         <div style={{'display':'flex', 'flexDirection':'column', 'alignItems':'center'}}>
             {/* if the user exists in db then inform them to change username. */}
-            {userExists? <div className="alert alert-danger">Username Already Exists.</div> : ""}
-            <h1>Sign Up</h1>
+            {userExists? <div className="alert alert-danger mt-3">Username Already Exists.</div> : ""}
+            <h1> Create Account </h1>
             <div>
             <Formik initialValues={{username, password1, password2}}
             enableReinitialize={true}
@@ -92,7 +93,9 @@ export default function SignUpComponent() {
                                 <Field type="password" className="form-control" name="password2"/>
                             </fieldset>
                             <div>
-                                <Button type="submit" className="m-4 p-2">Create User</Button>
+                                <Button variant="secondary" type="submit" size="lg" className="homepage-signup-button mb-5 mt-3">
+                                    Sign up
+                                </Button>
                             </div>
                         </Form>
                     )

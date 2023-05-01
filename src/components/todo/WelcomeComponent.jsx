@@ -5,58 +5,99 @@ import { Link } from "react-router-dom";
 import { retrieveHelloWorldBean, retrieveHelloWorldPath, retrieveHelloWorldPathVariable } from "./api/HelloWorldApiService";
 import { useAuth } from "./security/AuthContext";
 import {Container, Card, Col, Row} from "react-bootstrap";
+import SignUpComponent from "./SignUpComponent";
 function WelcomeComponent() {
     const authContext = useAuth()
     const token = authContext.token
+    const username = authContext.username
     const navigate = useNavigate()
     return (
-        
+        // if user is not logged in then display the cards and the sign up tab in columns
         <div className="homepage">
-        <Container className="homepage-content">
-          <Row className="justify-content-center">
-            <Col md={8} lg={6}>
-              {(token == null) ? (<h1 className="homepage-title mb-5">Welcome to StudyMate!</h1>) :(<h1 className="homepage-title mb-5">You're logged in and ready to start</h1>) }
+              {(token == null) ? (<h1 className="homepage-title mb-5">Study</h1>) : (<h1 className="homepage-title mb-5 mt-3">Hello, {username}</h1>) }
+        <Container>
+          {(token == null) ? 
+            (
+          <Row className="justify-content-center" style={{'height':'40%'}}>
+            
+            <Col>
               <div className="homepage-button-group">
-                {(token == null) ? 
-                (
-                <div>
-                <p className="homepage-description mb-5">
-                Keep track of your tasks, create flashcards, and never miss a deadline again. Sign up or log in to start using the app today.
+                
+            <div>
+                <div style={{'backgroundColor':'#eeeeee ', 'paddingTop':'10px', 'borderRadius':'10px'}}>
+                    <h2 style={{'color':'#4255ff'}}>Flash Cards</h2>
+                    <p className="homepage-description mb-5 pb-3">
+                        Create flash cards to help you review and study for your exams.
+                    </p>
+                </div>
+
+                <div style={{'backgroundColor':'#eeeeee', 'paddingTop':'10px', 'borderRadius':'10px'}}>
+                
+                <h2 style={{'color':'#4255ff'}}>Tasks</h2>
+                <p className="homepage-description mb-5 pb-3">
+                    Keep track of your deadlines by creating todos.
                 </p>
-                    <Button variant="primary" size="lg" className="homepage-login-button mb-5" onClick={()=>{navigate("/login")}}>
+                </div>
+                    {/* <Button variant="primary" size="lg" className="homepage-login-button mb-5" onClick={()=>{navigate("/login")}}>
                         Log in
                     </Button>
                     <Button variant="secondary" size="lg" className="homepage-signup-button mb-5">
                         Sign up
-                    </Button>
+                    </Button> */}
                 </div>
-                )
-                :
-                (
-            <div className="homepage-button-group">
-                <div class="card custom-cards" onClick={() =>{navigate("/flashcards")}}>
-            <div class="card-header">
-                Flashcards
             </div>
-            <div class="card-body">
-                <h5 class="card-title">Study your flashcards or create new ones.</h5>
-            </div>
-            </div>
-
-            <div class="card custom-cards" onClick={() =>{navigate("/todos")}}>
-            <div class="card-header">
-                Todos
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Create todos or view your deadlines</h5>
-            </div>
-            </div>
-                </div>
-                )
-                }
-              </div>
             </Col>
-          </Row>
+
+            <Col>
+                
+                <div style={{'backgroundColor':'#EAEFF2', 'borderRadius':'10px', 'maxWidth':'500px'}}>
+                    <SignUpComponent/>
+                </div>
+            </Col>
+            </Row>
+            )
+
+            :
+                        // if the user is logged in then we want to show the card links
+                        // to the todos/flashcards and also add in the + button so that
+                        // they can add new ones.
+            (
+            <Row className="justify-content-center" style={{'height':'40%'}}>
+                <Col>
+                <div style={{'backgroundColor':'#eeeeee ', 'paddingTop':'10px', 'borderRadius':'10px'}} className="front-card" onClick={()=>{navigate("/flashcards")}}>
+                <h2 style={{'color':'#4255ff'}}>Flash Cards</h2>
+                <p className="homepage-description mb-2 pb-3">
+                    Click the card to go to your flash cards. Click the plus to add a new set.
+                </p>
+                <p className="p-button">
+                    <div className="circular-button mb-2" onClick={(event)=>{navigate("/cardset-form/-1"); event.stopPropagation();}}> + </div> 
+                </p>
+                </div>
+                </Col>
+
+                <Col>  
+
+                <div style={{'backgroundColor':'#eeeeee', 'paddingTop':'10px', 'borderRadius':'10px'}} className="front-card" onClick={()=>{navigate("/todos")}}>
+                
+                <h2 style={{'color':'#4255ff'}}>Tasks</h2>
+                <p className="homepage-description mb-2 pb-3">
+                    Click the card to go to your todos page. Click the plus below to create new todo.
+                </p>
+                <p className="p-button">
+                    <div className="circular-button mb-2" onClick={(event)=>{navigate("/todo/-1"); event.stopPropagation();}}> + </div> 
+                </p>
+                </div>
+
+                </Col>
+                {/* <Button variant="primary" size="lg" className="homepage-login-button mb-5" onClick={()=>{navigate("/login")}}>
+                    Log in
+                </Button>
+                <Button variant="secondary" size="lg" className="homepage-signup-button mb-5">
+                    Sign up
+                </Button> */}
+            </Row>
+            )    }
+            
         </Container>
       </div>
     )

@@ -14,7 +14,6 @@ code {
 
 
 .homepage {
-  background-color: #fcf6bd;
   color: #444444;
   height: calc(100vh); /* Subtract height of nav and footer */
 }
@@ -28,7 +27,7 @@ code {
 }
 
 .homepage-title {
-  font-size: 6rem;
+  font-size: 50px;
   text-align: center;
 }
 
@@ -274,5 +273,52 @@ code {
   width: 100%;
 }
 
+.front-container {
+  margin-top: 10px !important;
+}
+
+.navcolor {
+  color: #4255ff !important;
+}
+
+.p-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circular-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: blue;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.circular-button:hover {
+  transform: scale(1.1);
+}
 
 
+.front-card {
+  /* Set initial box shadow */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  /* Set initial transition */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.front-card:hover {
+  /* Increase box shadow on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* Scale up and rotate slightly on hover */
+  transform: scale(1.03) rotate(0.5deg);
+  /* Change cursor to pointer on hover */
+  cursor: pointer;
+}
