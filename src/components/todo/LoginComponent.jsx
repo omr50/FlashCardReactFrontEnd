@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useAuth } from "./security/AuthContext"
+import { Button } from "react-bootstrap"
 function LoginComponent() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -28,22 +29,22 @@ function LoginComponent() {
         }
     }
     return (
-        <div className="Login">
+        <div className="Login" style={{'display':'flex', 'flexDirection':'column', 'alignItems':'center'}}>
             <div className="LoginForm">
                 <h1>Login</h1>
                 {showErrorMessage && <div className='errorMessage'>Authentication Failed. Please check your credentials.</div>}
                 <div>
-                    <label>User Name</label>
+                    <div style={{'margin':'8px'}}>username</div>
                     <input type="text" name="username" value={username} onChange={handleUsernameChange}/>
                 </div>
 
                 <div>
-                    <label>Password</label>
+                    <div style={{'margin':'8px'}}>password</div>
                     <input type="password" name="password" value={password} onChange={handlePasswordChange}/>
                 </div>
-
+                <br></br>
                 <div>
-                    <button type="button" name="login" onClick={handleSubmit}>Login</button>
+                    <Button onClick={handleSubmit}>Login</Button>
                 </div>
             </div>
         </div>

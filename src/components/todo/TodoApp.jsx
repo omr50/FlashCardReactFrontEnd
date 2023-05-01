@@ -14,6 +14,7 @@ import FlashcardComponent from './FlashcardComponent'
 import Cards from './CardsComponent'
 import AddFlashcardset from './addCardsetForm'
 import AddFlashcard from './addCardForm'
+import SignUpComponent from './SignUpComponent'
 function AuthenticatedRoute({children}) {
     const authContext = useAuth()
     if (authContext.isAuthenticated)
@@ -32,6 +33,7 @@ function TodoApp() {
                     <Routes>
                         <Route path='/' element={<WelcomeComponent/>}/>
                         <Route path='/login' element={<LoginComponent/>}/>
+                        <Route path='/signup' element={<SignUpComponent/>}/>
                         <Route path='/welcome/:username' element={
                         <AuthenticatedRoute>
                             <WelcomeComponent/>

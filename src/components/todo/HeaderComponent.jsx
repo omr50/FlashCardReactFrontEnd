@@ -22,7 +22,7 @@ function HeaderComponent() {
           </Nav>
           <Nav className="auth-buttons">
             {!isAuthenticated && <Link to="/login" className='nav-link'>Log In</Link>}
-            {!isAuthenticated && <Link to="/login" className='nav-link'>Sign In</Link>}
+            {!isAuthenticated && <Link to="/signup" className='nav-link'>Sign Up</Link>}
             {isAuthenticated && <Link to='/logout' className='nav-link' onClick={logout}>Log Out</Link>}
           </Nav>
         </Navbar.Collapse>

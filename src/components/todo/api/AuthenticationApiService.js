@@ -7,3 +7,5 @@ export const executeBasicAuthenticationService = (token)=> apiClient.get(`/basic
 })
 
 export const executeJwtAuthenticationService = (username, password)=> apiClient.post(`/authenticate`, {username, password})
+
+export const signUpService = (username, password)=> apiClient.post(`/signup`, {username, password})
