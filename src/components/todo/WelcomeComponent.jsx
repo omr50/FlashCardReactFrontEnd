@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -11,30 +11,38 @@ function WelcomeComponent() {
     const token = authContext.token
     const username = authContext.username
     const navigate = useNavigate()
+    const [currentDate, setCurrentDate] = useState(new Date());
+    const AuthContext = useAuth();
+    const isAuthenticated = AuthContext.isAuthenticated;
+
+    function logout() {
+        AuthContext.logout()
+    }
+    useEffect( () => {
+        setInterval(() => {
+            setCurrentDate(new Date());
+          }, 1000);
+    }, [])
     return (
         // if user is not logged in then display the cards and the sign up tab in columns
         <div className="homepage">
-              {(token == null) ? (<h1 className="homepage-title mb-5">Study</h1>) : (<h1 className="homepage-title mb-5 mt-3">Hello, {username}</h1>) }
-        <Container>
+            <br></br>
+            <br></br>
+        <Container style={{'height':'50vh !important'}}>
           {(token == null) ? 
             (
           <Row className="justify-content-center" style={{'height':'40%'}}>
-            
             <Col>
+            {(token == null) ? (<h1 className="homepage-title mb-2" style={{'textAlign':'left', 'color':'#1A7CFA'}}>Study!</h1>) : (<h1 className="homepage-title mb-2 mt-2">Hello, {username}</h1>) }
+
               <div className="homepage-button-group">
                 
             <div>
-                <div style={{'backgroundColor':'#eeeeee ', 'paddingTop':'10px', 'borderRadius':'10px'}}>
-                    <h2 style={{'color':'#4255ff'}}>Flash Cards</h2>
-                    <p className="homepage-description mb-5 pb-3">
+                <div style={{ 'paddingTop':'10px', 'borderRadius':'10px'}}>
+                    <p className="homepage-description mb-3 pb-3" style={{'textAlign':'left'}}>
                         Create flash cards to help you review and study for your exams.
                     </p>
-                </div>
-
-                <div style={{'backgroundColor':'#eeeeee', 'paddingTop':'10px', 'borderRadius':'10px'}}>
-                
-                <h2 style={{'color':'#4255ff'}}>Tasks</h2>
-                <p className="homepage-description mb-5 pb-3">
+                <p className="homepage-description mb-3 pb-3 " style={{'textAlign':'left'}}>
                     Keep track of your deadlines by creating todos.
                 </p>
                 </div>
@@ -50,7 +58,7 @@ function WelcomeComponent() {
 
             <Col>
                 
-                <div style={{'backgroundColor':'#EAEFF2', 'borderRadius':'10px', 'maxWidth':'500px'}}>
+                <div style={{'backgroundColor':'#EAEFF2', 'borderRadius':'10px', 'maxWidth':'500px', 'paddingTop':'15px'}}>
                     <SignUpComponent/>
                 </div>
             </Col>
@@ -62,15 +70,14 @@ function WelcomeComponent() {
                         // to the todos/flashcards and also add in the + button so that
                         // they can add new ones.
             (
-            <Row className="justify-content-center" style={{'height':'40%'}}>
+            <div>
+                <h1>Dashboard</h1>
+            <Row className="justify-content-center pt-5" style={{'height':'40%'}}>
                 <Col>
                 <div style={{'backgroundColor':'#eeeeee ', 'paddingTop':'10px', 'borderRadius':'10px'}} className="front-card" onClick={()=>{navigate("/flashcards")}}>
                 <h2 style={{'color':'#4255ff'}}>Flash Cards</h2>
-                <p className="homepage-description mb-2 pb-3">
-                    Click the card to go to your flash cards. Click the plus to add a new set.
-                </p>
-                <p className="p-button">
-                    <div className="circular-button mb-2" onClick={(event)=>{navigate("/cardset-form/-1"); event.stopPropagation();}}> + </div> 
+                <p className="homepage-description mb-4 pb-3 text-start p-3">
+                    Click to go to your tasks page.
                 </p>
                 </div>
                 </Col>
@@ -80,11 +87,8 @@ function WelcomeComponent() {
                 <div style={{'backgroundColor':'#eeeeee', 'paddingTop':'10px', 'borderRadius':'10px'}} className="front-card" onClick={()=>{navigate("/todos")}}>
                 
                 <h2 style={{'color':'#4255ff'}}>Tasks</h2>
-                <p className="homepage-description mb-2 pb-3">
-                    Click the card to go to your todos page. Click the plus below to create new todo.
-                </p>
-                <p className="p-button">
-                    <div className="circular-button mb-2" onClick={(event)=>{navigate("/todo/-1"); event.stopPropagation();}}> + </div> 
+                <p className="homepage-description mb-4 pb-3 text-start p-3">
+                    Go to your flash cards page.
                 </p>
                 </div>
 
@@ -96,6 +100,37 @@ function WelcomeComponent() {
                     Sign up
                 </Button> */}
             </Row>
+            <Row>
+                <Col className="bg-light m-3" style={{'borderRadius':'10px'}}>
+                    <div style={{'color':'#B12B24', 'fontSize':'40px'}}>Create</div>
+
+                    <div className="mb-2">New Todo</div>
+
+                <p className="p-button">
+                    <div className="circular-button mb-2" onClick={(event)=>{navigate("/todo/-1"); event.stopPropagation();}}> + </div> 
+                </p>
+                    <div className="mb-2">New Carset</div>
+
+                <p className="p-button">
+                    <div className="circular-button mb-2" onClick={(event)=>{navigate("/cardset-form/-1"); event.stopPropagation();}}> + </div> 
+                </p>
+                </Col>
+                <Col className="bg-light m-3" style={{'borderRadius':'10px'}}>
+                <Row>
+                    <div className="mt-5">
+                        <h3>Current Date and Time</h3>
+                        <p>{currentDate.toLocaleString()}</p>
+                    </div>
+                </Row>
+                <Row>
+                    <h2>Leave App?</h2>
+                    <p>
+                    <Button className="homepage-login-button" style={{'width':'fitContent'}} onClick={logout}>Log out</Button>
+                    </p>
+                </Row>
+                </Col>
+            </Row>
+            </div>
             )    }
             
         </Container>

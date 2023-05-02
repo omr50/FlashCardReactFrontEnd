@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import moment from "moment/moment"
 import { useEffect, useState } from "react"
 import { Button } from "react-bootstrap"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useAuth } from "./security/AuthContext"
 import { signUpService } from "./api/AuthenticationApiService"
 
@@ -52,7 +52,7 @@ export default function SignUpComponent() {
         <div style={{'display':'flex', 'flexDirection':'column', 'alignItems':'center'}}>
             {/* if the user exists in db then inform them to change username. */}
             {userExists? <div className="alert alert-danger mt-3">Username Already Exists.</div> : ""}
-            <h1> Create Account </h1>
+            <h1 style={{'color':'#0070E0'}}> Create Account </h1>
             <div>
             <Formik initialValues={{username, password1, password2}}
             enableReinitialize={true}
@@ -93,7 +93,7 @@ export default function SignUpComponent() {
                                 <Field type="password" className="form-control" name="password2"/>
                             </fieldset>
                             <div>
-                                <Button variant="secondary" type="submit" size="lg" className="homepage-signup-button mb-5 mt-3">
+                                <Button variant="secondary" type="submit" size="lg" className="homepage-signup-button mb-3 mt-3">
                                     Sign up
                                 </Button>
                             </div>
@@ -101,6 +101,8 @@ export default function SignUpComponent() {
                     )
                 }
             </Formik>
+            <Link to={'/login'} className="mb-2 pb-2"> Already Have an Account? Log In</Link>
+            <div><br></br></div>
             </div>
         </div>
     )
